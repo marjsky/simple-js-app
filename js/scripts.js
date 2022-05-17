@@ -24,3 +24,10 @@ let pokemonList = [
         abilities: ['Blaze', 'Gluttony']
     }
 ];
+
+// loop through array of objects 
+for (let i=0; i < pokemonList.length; i++) {
+     
+    //rendering in display each name and height through counter as index
+    document.write(pokemonList[i].name + " (height " + pokemonList[i].height + "m)");
+}
