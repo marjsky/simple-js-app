@@ -29,7 +29,7 @@ let pokemonList = [
 for (let i=0; i < pokemonList.length; i++) {
      
     //rendering in display each name and height through counter as index
-    document.write(pokemonList[i].name + " (height " + pokemonList[i].height + "m)");
+    document.write(`${pokemonList[i].name} (height ${pokemonList[i].height} m)`);
 
     // set conditon highest value of height from the list
     if (pokemonList[i].height == 1.9) {
