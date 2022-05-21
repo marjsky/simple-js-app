@@ -25,16 +25,15 @@ let pokemonList = [
     }
 ];
 
-// loop through array of objects 
-for (let i=0; i < pokemonList.length; i++) {
+pokemonList.forEach(function(pokemon) {
      
-    //rendering in display each name and height through counter as index
-    document.write(`${pokemonList[i].name} (height ${pokemonList[i].height} m)`);
+    //rendering in display each name and height
+    document.write(pokemon.name + ` (height `+ pokemon.height + `m)`);
 
     // set conditon highest value of height from the list
-    if (pokemonList[i].height == 1.9) {
+    if (pokemon.height == 1.9) {
         document.write(" - Wow, that's huge!<br>");
     } else {
         document.write("<br>");
     }
-}
+});
