@@ -27,14 +27,28 @@ let pokemonRepository = (function (){
         }
     ];
 
+    // adding pokemon with validate data
     function add (item) {
-        pokemonList.push(item);
+        if (
+            typeof item === "object" &&
+            "name" in item &&
+            "height" in item &&
+            "types" in item
+        ) {
+            pokemonList.push(item);
+            console.log('correct Pokemon entry data!');
+        } else {
+            console.log('error Pokemon entry data!');
+        }
+        
     }
 
+    // obtain list of storage array as pokemonList
     function getAll () {
         return pokemonList;
     }
 
+    // buttons attached data array with dynamic add items
     function addListItem(pokemon) {
         let pokemonList = document.querySelector(".pokemon-list");
         let listpokemon = document.createElement("li");
@@ -43,8 +57,17 @@ let pokemonRepository = (function (){
         button.classList.add("button-class");
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
+        button.addEventListener('click', function (){
+            showDetails(pokemon);
+        })
     }
 
+    // reveal object in console clicked button
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+
+    // IIFE returns object contains methods that reference functions.
     return {
         add: add,
         getAll: getAll,
