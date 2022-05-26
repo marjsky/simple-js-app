@@ -30,10 +30,10 @@ let pokemonRepository = (function (){
     // adding pokemon with validate data
     function add (item) {
         if (
-            typeof item === "object" &&
-            "name" in item &&
-            "height" in item &&
-            "types" in item
+            typeof item === 'object' &&
+            'name' in item &&
+            'height' in item &&
+            'types' in item
         ) {
             pokemonList.push(item);
             console.log('correct Pokemon entry data!');
@@ -50,11 +50,11 @@ let pokemonRepository = (function (){
 
     // buttons attached data array with dynamic add items
     function addListItem(pokemon) {
-        let pokemonList = document.querySelector(".pokemon-list");
-        let listpokemon = document.createElement("li");
-        let button = document.createElement("button");
+        let pokemonList = document.querySelector('.pokemon-list');
+        let listpokemon = document.createElement('li');
+        let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.classList.add("button-class");
+        button.classList.add('button-class');
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
         button.addEventListener('click', function (){
