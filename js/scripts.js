@@ -1,46 +1,20 @@
 let pokemonRepository = (function (){
 
-    let pokemonList = [
-        {
-            name: 'Beedrill',
-            height: 1,
-            types: ['bug', 'poison'],
-            abilities: ['Swarm', 'Sniper']
-        },
-        {
-            name: 'Nidoqueen',
-            height: 1.3,
-            types: ['ground', 'poison'],
-            abilities: ['Poison-point', 'Rivalry', 'Sheer-force']
-        },
-        {
-            name: 'Arcanine',
-            height: 1.9,
-            types: 'fire',
-            abilities: ['Flash-fire', 'Intimidate', 'Justified']
-        },
-        {
-            name: 'Pansear',
-            height: 0.6,
-            types: 'fire',
-            abilities: ['Blaze', 'Gluttony']
-        }
-    ];
+    // empty array that will push in from API and display it
+    let pokemonList = [];
+    let apiurl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     // adding pokemon with validate data
     function add (item) {
         if (
             typeof item === 'object' &&
             'name' in item &&
-            'height' in item &&
-            'types' in item
+            'detailsUrl' in item
         ) {
             pokemonList.push(item);
-            console.log('correct Pokemon entry data!');
         } else {
             console.log('error Pokemon entry data!');
         }
-        
     }
 
     // obtain list of storage array as pokemonList
@@ -62,31 +36,59 @@ let pokemonRepository = (function (){
         })
     }
 
-    // reveal object in console clicked button
-    function showDetails(pokemon) {
-        console.log(pokemon);
+    // this method fetches data from API add items to the array
+    function loadList () {
+        return fetch(apiurl).then(function (response){
+            return response.json();
+        }).then(function (json){
+            json.results.forEach(function (item){ // access JSON's property results:item(s)
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                add(pokemon);
+                console.log(pokemon);
+            });
+        }).catch(function (e){
+            console.error(e);
+        })
+    }
+
+    // this method fetches data access API values of properties 
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function(response) {
+            return response.json();
+        }).then(function (details) {
+            item.imageUrl = details.sprites.font_default;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
+    }
+
+    // reveal API's object in console clicked button
+    function showDetails(item) {
+        pokemonRepository.loadDetails(item).then(function () {
+            console.log(item);
+        });
     }
 
     // IIFE returns object contains methods that reference functions.
     return {
         add: add,
         getAll: getAll,
-        addListItem: addListItem
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails,
+        showDetails: showDetails
     }
 })();
 
-// Adding item to array into IIFE of function add
-pokemonRepository.add({
-    name: 'Squirtle',
-    height: 0.5, 
-    types: 'water', 
-    abilities: ['Rain-dish', 'Torrent']
-});
-
-// returns all items array
-console.log(pokemonRepository.getAll()); 
-
 // Looping the array from IIFE to handle new change.
-pokemonRepository.getAll().forEach(function(pokemon) {
-    pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach(function(pokemon) {
+        pokemonRepository.addListItem(pokemon);
+    });
 });
