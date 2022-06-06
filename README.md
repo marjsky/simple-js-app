@@ -11,7 +11,7 @@ Key features
 - On user action by clicking on list, view details for that item
 
 ### Screenshot
-![](/simple-js-app/screenshot-june-6-2022.png)
+![This is an image of screenshot](screenshot-june-6-2022.png)
 
 ## My process
 ### Build with
