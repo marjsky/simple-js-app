@@ -11,8 +11,8 @@ Key features
 - On user action by clicking on list, view details for that item
 
 ### Screenshot
-![](./screenshot-june-6-2020.png)
-### Links
+![](/simple-js-app/screenshot-june-6-2022.png)
+
 ## My process
 ### Build with
 - Semantic HTML5 markup
@@ -23,6 +23,7 @@ Key features
 - UI pattern of modal to this app
 
 ### What I learned 
+I learned how to estabish modal as centered on the screen, contain 3 elements of title, text, and image. Adding button element as function closing the modal. Also it able to close by clicking outside of the modal.
 
 ### Author
 [Marjsky](https://github.com/Marjsky)
