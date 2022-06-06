@@ -1,30 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
+    text-align: center;
     line-height: 2;
     margin: 40px;
     font-size: x-large;
     font-family: cursive;
 }
 
+p {
+    font-weight: bold;
+}
+.pokemon-list {
+    list-style: none;
+}
+
 .button-class {
     background: linear-gradient(
         to right,
         #1e5799 0%,
-        #2989d8 50%,
-        #207cca 51%,
+        #2989d8 25%,
+        #207cca 75%,
         #7db9e8 100%
         ); 
     border: none;
+    width: 50%;
     border-radius: 1em;
     color: white;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
+    text-transform: capitalize;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.6s;
     cursor: pointer;
     background-color: white;
-    border: 2px solid #11b3e9;
+    border: 2px solid #3a7e95;
+    font-size: 0.8em;
+    min-width: 180px;
 }
 
+#modal-container {
+    position: fixed;
+    padding: 20px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* to show it above other content */
+    z-index: 999;
+    /* to allow scrolling if screen
+    is not high enough */
+    overflow: auto;
+    /* used to center the model */
+    display: none;
+    text-align: center;
+}
+
+#modal-container.is-visible {
+    /* CSS for modal contaier: add your own
+    desired CSS styles here */
+    display: block;
+}
+
+.modal {
+    margin: auto;
+    display: inline-block;
+    box-sizing: border-box;
+    background: #fff;
+    padding: 15px;
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+}
+
+.modal-close {
+    float: right;
+    -webkit-appearance: none;
+    border: 0;
+    background: none;
+    color: #777;
+    text-decoration: underline;
+}
+
+.modal h1 {
+    margin: auto;
+    width: 50%;
+    text-transform: capitalize;
+    font-size: 5vw;
+}
+
+.modal p {
+    margin: auto;
+    width: 50%;
+    font-size: 5vw;
+    
+}
+.modal img {
+    display: block;
+    width: 30%;
+    height: auto;
+    margin: auto;
+}
+
+@media (min-width: 500px) {
+    .button-class {
+        font-size: larger;
+        max-width: 400px;
+    }
+    .modal h1 {
+        /* font-size: 6vw; */
+    }
+    .modal p {
+        /* font-size: 1em; */
+    }
+}
