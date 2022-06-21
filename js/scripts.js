@@ -119,7 +119,24 @@ let pokemonRepository = (function (){
         modalBody.append(typeElement);
     }
 
-    
+    //Search function for Navbar
+    let search = document.querySelector('#myInput');
+    search.addEventListener('input', searchList);
+
+    function searchList() {
+        let searchInput = document.querySelector('#myInput').value;
+        searchInput = searchInput.toLowerCase();
+        let listItem = $('li');
+        listItem.each(function() {
+            let item = $(this);
+            let name = item.text();
+            if (name.includes(searchInput)) {
+                item.show();
+            } else {
+                item.hide();
+            }
+        });
+    }
 
     // IIFE returns object contains methods that reference functions.
     return {
