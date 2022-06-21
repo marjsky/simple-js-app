@@ -8,3 +8,32 @@ a.navbar-brand {
     font-size: 45px;
     font-weight: bold;
 }
+p {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 2em  ;
+    text-align: left;
+    padding-left: 50px;
+}
+h2 {
+    font-weight: bold;
+}
+.pokemon-list {
+    list-style: none;
+}
+.btn {
+    color: black;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 25px;
+    background: linear-gradient(
+        to right,
+        #1e5799 0%,
+        #2989d8 25%,
+        #207cca 75%,
+        #7db9e8 100%
+        ); 
+}
+.btn-secondary {
+    color: white;
+}
