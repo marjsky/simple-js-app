@@ -3,7 +3,6 @@ let pokemonRepository = (function (){
     // empty array that will push in from API and display it
     let pokemonList = [];
     let apiurl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-    let modalContainer = document.querySelector('#modal-container');
 
     // adding pokemon with validate data
     function add (item) {
@@ -29,7 +28,19 @@ let pokemonRepository = (function (){
         let listpokemon = document.createElement('li');
         let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.classList.add('button-class');
+        button.classList.add(
+            'btn',
+            'btn-primary',
+            'col-xl-6',
+            'col-md-8',
+            'col-11',
+            'mx-auto');
+        button.setAttribute('type', 'button');
+        button.setAttribute('data-toggle', 'modal');
+        button.setAttribute('data-target', '#exampleModal');
+        button.classList.add('pokemon-list-button');
+        listpokemon.classList.add('list-group-item');
+        listpokemon.classList.add('pokemon-list-item');
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
         button.addEventListener('click', function (){
@@ -63,7 +74,12 @@ let pokemonRepository = (function (){
         }).then(function (details) {
             item.imageUrl = details.sprites.other.dream_world.front_default;
             item.height = details.height;
-            item.types = details.types;
+            
+            let types = [];
+            details.types.forEach(function (item) {
+                types.push(item.type.name);
+            })
+            item.types = types;
         }).catch(function (e) {
             console.error(e);
         });
@@ -78,59 +94,32 @@ let pokemonRepository = (function (){
 
     // UI pattern of modal display
     function showModal(item) {
-        // clear all existing model content
-        modalContainer.innerHTML = '';
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
+        // variables of attributes from model content
+        let modalBody = $(".modal-body");
+        let modalTitle = $(".modal-title");
+        let modalHeader = $(".modal-header.modal-title");
+        let ModalLabel = $("#exampleModalLabel");
 
-        // add the new modal content
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-        closeButtonElement.addEventListener('click', hideModal);
+        // clear all existing modal content
+        modalHeader.empty();
+        modalTitle.empty();
+        modalBody.empty();
 
-        // add h1 element as name data to the modal
-        let titleElement = document.createElement('h1');
-        titleElement.innerText = item.name;
+        // creating elements in modal content
+        let nameElement = $(`<h2>${item.name.toUpperCase()}</h2>`);
+        let imageElement = $(`<img class='modal-img' width='50%'>`);
+        imageElement.attr('src', item.imageUrl);
+        let heightElement = $(`<p>Height: ${item.height} m</p>`);
+        let typeElement = $(`<p>Types: ${item.types.join(', ')}</p>`);
 
-        // add p element as height data to the modal
-        let contentElement = document.createElement('p');
-        contentElement.innerText = `Height: ${item.height} m`;
-
-        // add img element as svg to the modal
-        let imageElement = document.createElement('img');
-        imageElement.src = item.imageUrl;
-
-        // these elements for modal attach as child to div.modal
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(titleElement);
-        modal.appendChild(contentElement);
-        modal.appendChild(imageElement);
-        modalContainer.appendChild(modal);
-
-        modalContainer.classList.add('is-visible');
+        // elements appending to title and body into modal
+        ModalLabel.append(nameElement);
+        modalBody.append(imageElement);
+        modalBody.append(heightElement);
+        modalBody.append(typeElement);
     }
 
-    // to close down model
-    function hideModal() {
-        modalContainer.classList.remove('is-visible');
-    }
-
-    // Press Escape keydown as function to call hideout to close model
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' &&
-        modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    })
-
-    // click outside of modal display to close modal
-    modalContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === modalContainer) {
-            hideModal();
-        }
-    });
+    
 
     // IIFE returns object contains methods that reference functions.
     return {
@@ -139,7 +128,8 @@ let pokemonRepository = (function (){
         addListItem: addListItem,
         loadList: loadList,
         loadDetails: loadDetails,
-        showDetails: showDetails
+        showDetails: showDetails,
+        showModal: showModal
     }
 })();
 
