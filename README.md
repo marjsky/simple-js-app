@@ -15,15 +15,19 @@ Key features
 
 ## My process
 ### Build with
-- Semantic HTML5 markup
-- CSS
-- JavaScript
-- Pokemon API
-- Ajax
-- UI pattern of modal to this app
+* Semantic HTML5 markup
+* CSS
+* JavaScript
+* Pokemon API
+* Ajax
+* UI pattern of Bootstrap
+    * Modal 
+    * Navbar 
+* Fetch polyfill
+* Promise polyfill
 
 ### What I learned 
-I learned how to estabish modal as centered on the screen, contain 3 elements of title, text, and image. Adding button element as function closing the modal. Also it able to close by clicking outside of the modal.
+I learned how to estabish modal as centered on the screen, contain 3 elements of title, image, and height. Adding button element as function closing the modal, pressing the escape key, or clicking outside the modal. Last, I learn how to use Immediately invoked function expressions to be isolated variable declarations. 
 
 ### Author
 [Marjsky](https://github.com/Marjsky)
