@@ -11,11 +11,11 @@ Key features
 - On user action by clicking on list, view details for that item
 
 ### Screenshots:
-![This is an image of screenshot](screenshotA-2022-06-25.png)
+![This is an image of screenshot](ScreenshotA-2022-06-25.png)
 
-![This is an image of screenshot](screenshotB-2022-06-25.png)
+![This is an image of screenshot](ScreenshotB-2022-06-25.png)
 
-![This is an image of screenshot](screenshotC-2022-06-25.png)
+![This is an image of screenshot](ScreenshotC-2022-06-25.png)
 
 ## My process
 ### Build with:
