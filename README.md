@@ -12,7 +12,9 @@ Key features
 
 ### Screenshots:
 ![This is an image of screenshot](screenshotA-2022-06-25.png)
+
 ![This is an image of screenshot](screenshotB-2022-06-25.png)
+
 ![This is an image of screenshot](screenshotC-2022-06-25.png)
 
 ## My process
